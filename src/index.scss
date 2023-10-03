@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700&display=swap');
+
+//Definir colores principales
+:root {
+    --ColorPrimario: hsl(15, 74%, 70%);
+    --ColorSecundario: hsl(255, 100%, 85%);
+    --gris: hsl(0, 0%, 20%);
+    --agua: hsl(178, 15%, 67%);
+    --transition: .4s ease-in-out;
+    --whiteShadow: drop-shadow(2px 2px 0px #ffffff);
+    --whiteShadow2: drop-shadow(6px 6px 0px #ffffff);
+    --greyShadow: 10px 10px 5px hsl(0, 0%, 20%);
+    --greyShadowBtn: 6px 6px 3px hsl(0, 0%, 78%);
+    ;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Kanit', sans-serif;
+}
+
+
+//Customización colores bootstrap
+$theme-colors: (
+    'primary': hsl(15, 74%, 70%),
+    'secondary':hsl(255, 56%, 59%)
+);
+
+$dropdown-dark-bg:      hsl(15, 74%, 70%)    ;
+
+
+
+// CLASES GENERALES =========>
+
+.container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.section {
+    padding: 4rem 0 2rem;
+}
+
+.icon {
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 1rem;
+
+    &:hover {
+        transform: translateY(-5%);
+        filter: var(--whiteShadow2);
+    }
+}
+
+.btnOne{
+    background-color: var(--ColorPrimario);
+    margin: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    &:hover{
+        background-color: var(--agua);
+        box-shadow: var(--greyShadowBtn);
+    }
+
+}
+
+.btnTwo{
+    background-color: var(--ColorSecundario);
+    margin: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    &:hover{
+        background-color: var(--agua);
+        box-shadow: var(--greyShadowBtn);
+    }
+
+}
+
+.btnThree{
+    background-color: transparent;
+    margin: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    &:hover{
+        box-shadow: var(--greyShadowBtn);
+
+    }
+
+}
+
+//Estilos por sección
+//1. Nav Bar
+.navegacion {
+
+        .brand {
+            .logo {
+                height: 30px;
+                filter: var(--whiteShadow);
+                transition: var(--transition);
+    
+                &:hover {
+                    transform: translateY(-10%);
+                    filter: var(--whiteShadow2);
+                }
+            }
+        }
+
+}
+
+
+//2. Home
+.home {
+    padding-top: 5rem;
+    text-align: center;
+    gap: 1rem;
+    flex-direction: column;
+
+    .mainText {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 2.5rem;
+    }
+
+    .homeImages {
+        width: 100%;
+        margin: 1rem auto 0;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 5rem;
+
+        .videoDiv {
+            width: 500px;
+            height: 300px;
+
+            .video {
+                border-radius: 10rem 3rem 10rem 3rem;
+                width: 100%;
+            }
+        }
+
+        .banner {
+            position: absolute;
+            width: 40%;
+            top: -10%;
+            left: 50%
+        }
+
+        .catchPhrase1 {
+            position: absolute;
+            text-align: left;
+            width: 65%;
+            top: 75%;
+            left: 18%;
+
+            .phrase1 {
+                color: #ffffff;
+                background-color: var(--gris);
+                padding-left: 2%;
+                border-radius: 10px;
+            }
+        }
+
+        .catchPhrase2 {
+            position: absolute;
+            text-align: left;
+            width: 50%;
+            top: 92%;
+            left: 30%;
+
+            .phrase2 {
+                color: #ffffff;
+                background-color: var(--gris);
+                padding-left: 2%;
+                border-radius: 5px;
+            }
+        }
+
+    }
+}
+
+//4.Pasos 
+.steps {
+    .sectionContainer {
+        text-align: center;
+
+        .stepsContainer {
+            margin-top: 1rem;
+            gap: 1.5rem;
+
+            .singleCard {
+                position: relative;
+                height: 320px;
+                width: 85%;
+                max-width: 250px;
+                overflow: hidden;
+                border-radius: 10rem;
+                gap: 1rem;
+                margin: auto;
+                box-shadow: var(--greyShadow);
+
+                .stepImage,
+                .stepNumber,
+                .stepName {
+                    position: absolute;
+                }
+
+                .stepImage {
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                    object-fit: cover;
+                }
+
+                .numberPicture {
+
+
+                    .stepNumber {
+                        background-color: var(--ColorPrimario);
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 50%;
+                        bottom: 30px;
+                        left: 40%;
+                        transform: translateX(-50%);
+                        border: 5px solid rgba(255, 255, 255, 0.637);
+                        transition: var(--transition);
+                        animation: animated 2.3s infinite;
+                    }
+                }
+
+
+                @keyframes animated {
+                    0% {
+                        transform: translateY(0px);
+                    }
+
+                    50% {
+                        transform: translateY(14px);
+                    }
+
+                    100% {
+                        transform: translateY(0px);
+                    }
+                }
+
+                .stepName {
+                    bottom: -100%;
+                    width: 100%;
+                    height: max-content;
+                    background: #ffffff;
+                    padding: 1.5rem 1rem;
+                    transition: var(--transition);
+                    animation: animatedBorders 2.3s infinite;
+
+                    span {
+                        display: block;
+                        color: var(--blackColor);
+                        font-weight: 700;
+                    }
+
+                    p {
+                        color: var(--PrimaryColor);
+                        font-style: italic;
+                        padding: 5px;
+                    }
+                }
+
+                @keyframes animatedBorders {
+                    0% {
+                        border-radius: 0rem;
+                    }
+
+                    50% {
+                        border-radius: 2rem;
+                    }
+
+                    100% {
+                        border-radius: 0rem;
+                    }
+                }
+
+                &:hover {
+                    .stepName {
+                        bottom: 0;
+                        transition: 1s ease-in-out;
+                    }
+
+                    .stepNumber {
+                        bottom: 200px;
+                        transition: 1s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//5.Footer
+.footer {
+    background-color: var(--ColorSecundario);
+
+    .rrssData {
+        text-align: center
+    }
+
+    .contactData {
+        border-left: dotted;
+
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+}
+
+//6.Perfil
+.perfil {
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    gap: 1rem;
+
+    .container {
+        .card1 {
+            border: solid grey;
+            border-radius: 30px;
+            flex-direction: column;
+            padding: 1rem;
+            text-align: center;
+
+            p {
+                font-size: 1.5rem;
+
+            }
+
+            span {
+                font-weight: 500
+            }
+
+            .placeholderProfile {
+                width: 30%;
+                margin: 1rem;
+            }
+
+        }
+    }
+}
+
+//7.Login
+.login{
+    .groupMail{
+        margin-bottom: 1rem;
+    }
+    .botonLogin{
+        text-align: center;
+    }
+    .textLogin{
+        text-align: center;
+        .text1{
+            font-size: 1.5rem;
+        }
+    }
+}
+
+//8.Registro
+.registro{
+    .form-group{
+        margin-bottom: 1rem;
+    }
+    .botonReg{
+        text-align: center;
+    }
+    .textReg{
+        text-align: center;
+    }
+}
+//9.Ingresar roductos
+.newProduct{
+    .form-group{
+        margin-bottom: 1rem;
+    }
+    .botonPost{
+        text-align: center;
+    }
+}
+
+//10. Galería y cartas
+.galeria {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap:1rem;
+    .imgCard{
+        height: 300px;
+    }
+    .botones{
+        display: flex;
+        justify-content: space-around
+    }
+}
+
+//11.Detalle producto
+.detalleProducto{
+    .container{
+    
+        .productImage{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+            img{
+                border-radius: 30px;
+                height: 400px;
+                width: auto;
+            }
+        }
+    }
+}
+
+  
+/*Importar bootstrap*/
+@import '~bootstrap/scss/bootstrap';
