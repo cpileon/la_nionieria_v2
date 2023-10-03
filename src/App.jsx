@@ -17,6 +17,7 @@ import Tienda from './views/Tienda'
 import Producto from './views/Producto'
 import Carrito from './views/Carrito'
 import Publicar from './views/Publicar'
+import MisProductos from './views/MisProductos'
 
 
 //HOLAHOLA//
@@ -37,6 +38,7 @@ function App() {
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/publicar" element={<Publicar />} />
+            <Route path="/misproductos" element={<MisProductos />} />
           </Routes>
           <Footer />
         </Provider>

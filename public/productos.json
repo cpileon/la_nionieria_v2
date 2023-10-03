@@ -3,78 +3,54 @@
         "desc": "Juego de kirby para consola SNES",
         "id": "P001",
         "img": "https://i.ebayimg.com/thumbs/images/g/lHEAAOSwO25k37F~/s-l640.jpg",
-        "ingredients": [
-            "mozzarella",
-            "tomates",
-            "jamón",
-            "orégano"
-        ],
         "name": "Kirby",
-        "price": 5950
+        "price": 5950,
+        "cat": "Videojuego",
+        "stat": "Usado/ como nuevo"
     },
     {
         "desc": "Juego de DK para SNES",
         "id": "P002",
         "img": "https://i.ebayimg.com/images/g/QP0AAOSw0JNjYHdE/s-l1600.jpg",
-        "ingredients": [
-            "mozzarella",
-            "tomates",
-            "jamón",
-            "choricillo"
-        ],
         "name": "Donkey Kong Country",
-        "price": 7250
+        "price": 7250,
+        "cat": "Videojuego",
+        "stat": "Usado/ como nuevo"
     },
     {
         "desc": "Figurita a escala de Luffy, serie One Piece",
         "id": "P003",
         "img": "https://i.ebayimg.com/images/g/F6MAAOSwa~JbNeR1/s-l500.jpg",
-        "ingredients": [
-            "mozzarella",
-            "tomates",
-            "salame",
-            "orégano"
-        ],
         "name": "Luffy - Figura a escala",
-        "price": 5990
+        "price": 5990,
+        "cat": "Figura coleccionable",
+        "stat": "Usado / con detalles"
     },
     {
         "desc": "Set booster TCG Magic Edición Universes Beyond - 75 sobres",
         "id": "P004",
         "img": "https://mesa1.cl/cdn/shop/files/MTGLTR_EN_BstrDspBx_Set_01_03_800x.jpg",
-        "ingredients": [
-            "mozzarella",
-            "salame",
-            "aceitunas",
-            "champiñones"
-        ],
         "name": "BOX SET BOOSTERS MAGIC",
-        "price": 9590
+        "price": 9590,
+        "cat": "Juego de cartas",
+        "stat": "Nuevo"
     },
     {
         "desc": "Pin de Pikachu sorprendido, igualito al meme.",
         "id": "P005",
         "img": "https://i.etsystatic.com/17983530/r/il/97f75b/3609667426/il_fullxfull.3609667426_jnl2.jpg",
-        "ingredients": [
-            "mozzarella",
-            "tomates cherry",
-            "bacon",
-            "orégano"
-        ],
         "name": "PIN Pikachu sorprendido",
-        "price": 6450
+        "price": 6450,
+        "cat": "Accesorio",
+        "stat": "Nuevo"
     },
     {
         "desc": "Polera modificada de Sailor Moon - Uniforme de escuela de Serena - Talla S",
         "id": "P006",
         "img": "https://m.media-amazon.com/images/I/61kNGtpyc8L._AC_UX522_.jpg",
-        "ingredients": [
-            "mozzarella",
-            "pimientos",
-            "pollo grillé",
-            "orégano"
-        ],
         "name": "Polera Sailor Moon",
-        "price": 8500
+        "price": 8500,
+        "cat": "Accesorio",
+        "stat": "Usado / con detalles"
     }
 ]

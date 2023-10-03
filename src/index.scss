@@ -396,7 +396,7 @@ $dropdown-dark-bg:      hsl(15, 74%, 70%)    ;
         text-align: center;
     }
 }
-//9.Ingresar roductos
+//9.Ingresar productos
 .newProduct{
     .form-group{
         margin-bottom: 1rem;
@@ -440,6 +440,20 @@ $dropdown-dark-bg:      hsl(15, 74%, 70%)    ;
     }
 }
 
+//12. Galería y cartas
+.cont {
+    display: grid;
+    padding:100px;
+    grid-template-columns: auto auto auto;
+    gap:1rem;
+    .imgCard{
+        height: 300px;
+    }
+    .botones{
+        display: flex;
+        justify-content: space-around
+    }
+}
   
 /*Importar bootstrap*/
 @import '~bootstrap/scss/bootstrap';

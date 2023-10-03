@@ -81,13 +81,10 @@ export default function Producto() {
                         </Card.Text>
                         <hr />
                         <dl>
-                            <dt>Ingredientes:</dt>
+                            <dt>Detalles del Producto:</dt>
                             <br />
-                            {chosenProducto[0].ingredients.map((ing) => {
-                                return (
-                                    <dd key={ing}>🍕{ing[0].toUpperCase() + ing.substring(1)}</dd>
-                                )
-                            })}
+                            <Card.Text className="categoria">{chosenProducto[0].cat}</Card.Text>
+                            <Card.Text className="estado">{chosenProducto[0].stat}</Card.Text>
                         </dl>
                         <hr />
                         <div className="bottom">

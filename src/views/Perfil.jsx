@@ -21,10 +21,9 @@ const Perfil = () => {
                         <h4>¿Qué te gustaría hacer ahora?</h4>
                         <ul>
                             <a ></a>
-                            <li><a href="#">Ver mis productos</a></li>
+                            <li><a href="/misproductos">Ver mis productos</a></li>
                             <li><Link to= "/publicar">Publicar un producto</Link></li>
                             <li><Link to="/carrito">Ir a Mi Carrito</Link></li>
-                            <li><a href="#">Editar Mi Perfil</a></li>
                             <li><a href="#">Cerrar Sesión</a></li>
                         </ul>
                     </div>
