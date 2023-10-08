@@ -9,7 +9,7 @@ import profile from '../assets/profile.svg'
 import Context from "../Context";
 
 const Perfil = () => {
-    const { logout } = useContext(Context)
+    const { logout, idUsuario, setIdUsuario } = useContext(Context)
 
  //Aquí se guardan los datos localmente
   const [usuario, setUsuarioLocal] = useState({});
@@ -20,9 +20,12 @@ const Perfil = () => {
     const token = localStorage.getItem("token");
 
     try {
+      //de data sacamos la id_usuario
       const { data } = await axios.get(urlServer + endpoint, {
         headers: { Authorization: "Bearer " + token },
       });
+      setIdUsuario(data.id)
+      console.log(idUsuario)
       setUsuarioLocal(data);
     } catch (error) {
         console.error("Error en la solicitud:", error);
@@ -45,6 +48,7 @@ const Perfil = () => {
                         <img src={profile} className='placeholderProfile'></img>
                         <p>¡Bienvenido/a <span>{usuario.nombre}</span>!</p>
                         <p>{usuario.email}</p>
+                        <p>ID: {idUsuario}</p>
                     </div>
                 </Col>
                 <Col>

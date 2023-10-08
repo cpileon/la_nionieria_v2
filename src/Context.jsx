@@ -8,6 +8,8 @@ export const Provider = ({ children }) => {
     const [usuario, setUsuario] = useState(null)
     const [productos, setProductos] = useState([]);
     const [prevCarrito, setPrevCarrito] = useState([]);
+    //Variable global para guardar id_usuario
+    const [idUsuario, setIdUsuario] = useState();
     //Estado para cambiar visibilización de la navbar
     const [navbar, setNavbar] = useState();
 
@@ -38,7 +40,7 @@ export const Provider = ({ children }) => {
     }, []);
 
 
-    const globalState = { productos, prevCarrito, setPrevCarrito, navbar, setNavbar, usuario, setUsuario, logout }
+    const globalState = { productos, prevCarrito, setPrevCarrito, navbar, setNavbar, usuario, setUsuario, logout, idUsuario, setIdUsuario }
 
     return <Context.Provider value={globalState}>
         {children}

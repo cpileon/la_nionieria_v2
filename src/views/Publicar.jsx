@@ -4,11 +4,12 @@ import Context from "../Context";
 import axios from "axios";
 
 export default function Publicar() {
-    const { productos, setProductos } = useContext(Context);
+    const { productos, setProductos, idUsuario } = useContext(Context);
 
     const navigate = useNavigate();
 
     const [productoNuevo, setProductoNuevo] = useState({
+        //id_usuario: idUsuario,
         nombre: "",
         precio: "",
         stock: "",
@@ -71,6 +72,7 @@ export default function Publicar() {
     return (
         <div className="newProduct col-10 col-sm-6 col-md-3 m-auto mt-5 section">
             <h1>Publicar un Producto</h1>
+            <p>ID usuario: {idUsuario}</p>
             <hr />
             <form onSubmit={handleSubmit}>
                 <div className="form-group gNombre">
