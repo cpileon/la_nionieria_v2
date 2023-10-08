@@ -81,14 +81,27 @@
   box-shadow: var(--greyShadowBtn);
 }
 
-.navegacion .brand .logo {
+.noShow {
+  display: none;
+}
+
+.navegacion {
+  width: 100%;
+}
+.navegacion .navCont1 {
+  width: 100%;
+}
+.navegacion .navCont1 .brand .logo {
   height: 30px;
   filter: var(--whiteShadow);
   transition: var(--transition);
 }
-.navegacion .brand .logo:hover {
+.navegacion .navCont1 .brand .logo:hover {
   transform: translateY(-10%);
   filter: var(--whiteShadow2);
+}
+.navegacion .navCont1 .containerBtns {
+  width: 100%;
 }
 
 .home {
@@ -338,6 +351,20 @@
   border-radius: 30px;
   height: 400px;
   width: auto;
+}
+
+.cont {
+  display: grid;
+  padding: 100px;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+}
+.cont .imgCard {
+  height: 300px;
+}
+.cont .botones {
+  display: flex;
+  justify-content: space-around;
 }
 
 /*Importar bootstrap*/
