@@ -9,6 +9,7 @@ export default function Publicar() {
     const navigate = useNavigate();
 
     const [productoNuevo, setProductoNuevo] = useState({
+        //id: "",
         //id_usuario: idUsuario,
         nombre: "",
         precio: "",
@@ -53,6 +54,8 @@ export default function Publicar() {
             setProductos([...productos, productoNuevo]);
             // Limpia el formulario
             setProductoNuevo({
+                //id: "",
+                //id_usuario: idUsuario,
                 nombre: "",
                 precio: "",
                 stock: "",
