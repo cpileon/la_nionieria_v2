@@ -4,7 +4,7 @@ import Context from "../Context";
 import axios from "axios";
 
 export default function Publicar() {
-    const { productos, setProductos} = useContext(Context);
+    const { productos, setProductos } = useContext(Context);
     const navigate = useNavigate();
     const idUsuario = localStorage.getItem('idUsuario');
 
