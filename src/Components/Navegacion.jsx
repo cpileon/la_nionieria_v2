@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,15 +8,17 @@ import logosolo from '../assets/logosolo.png'
 
 //Importar contexto
 import Context from "../Context";
-import { useContext } from "react";
 
 const Navegacion = () => {
-//Para visibilidad de navbar
-let token = localStorage.getItem('token')
 
+//Para visibilidad de navbar
+const [localnombre, setlocalnombre] = useState()
+let token = localStorage.getItem('token')
+let nombre = localStorage.getItem('nombreUsuario')
   const checkStorage = () =>{
     if(token){
-        setNavbar("miperfil")
+        setNavbar("mia")
+        setlocalnombre(nombre)
     }else{
         setNavbar("noShow")
     }
@@ -49,13 +51,15 @@ let token = localStorage.getItem('token')
 
           <Container className='containerBtns flex justify-content-between'>
             <div className="leftsideNav flex">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/register">Registro</Nav.Link>
-              <Nav.Link href="/tienda">Tienda</Nav.Link>
+              <Nav.Link className="mx-1" href="/">Home</Nav.Link>
+              <Nav.Link className="mx-1" href="/tienda">Tienda</Nav.Link>
+              <div className={`flex`}>
+              <Nav.Link className="mx-1" href="/login">Login</Nav.Link>
+              <Nav.Link className="mx-1" href="/register">Registro</Nav.Link>
+              </div>
             </div>
             <div className='rightsideNav flex ml-auto'>
-              <NavDropdown title="Mi usuario" id="basic-nav-dropdown" menuVariant="dark" className={navbar}>
+              <NavDropdown title= {`¡Hola ${localnombre}!`} id="basic-nav-dropdown" menuVariant="dark" className={navbar}>
                 <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Placeholder

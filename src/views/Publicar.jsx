@@ -4,12 +4,12 @@ import Context from "../Context";
 import axios from "axios";
 
 export default function Publicar() {
-    const { productos, setProductos, idUsuario } = useContext(Context);
-
+    const { productos, setProductos} = useContext(Context);
     const navigate = useNavigate();
+    const idUsuario = localStorage.getItem('idUsuario');
 
     const [productoNuevo, setProductoNuevo] = useState({
-        //id_usuario: idUsuario,
+        idUsuario: idUsuario,
         nombre: "",
         precio: "",
         stock: "",
@@ -53,6 +53,7 @@ export default function Publicar() {
             setProductos([...productos, productoNuevo]);
             // Limpia el formulario
             setProductoNuevo({
+                idUsuario: idUsuario,
                 nombre: "",
                 precio: "",
                 stock: "",

@@ -9,11 +9,13 @@ import profile from '../assets/profile.svg'
 import Context from "../Context";
 
 const Perfil = () => {
-    const { logout, idUsuario, setIdUsuario } = useContext(Context)
+    const { logout } = useContext(Context)
 
  //Aquí se guardan los datos localmente
   const [usuario, setUsuarioLocal] = useState({});
-
+  const [loading, setLoading, setIdUsuario] = useState(true); 
+  let idUsuario
+  
   const getUsuarioData = async () => {
     const urlServer = "http://localhost:3000";
     const endpoint = "/usuarios";
@@ -24,9 +26,10 @@ const Perfil = () => {
       const { data } = await axios.get(urlServer + endpoint, {
         headers: { Authorization: "Bearer " + token },
       });
-      setIdUsuario(data.id)
-      console.log(idUsuario)
+      localStorage.setItem('idUsuario', data.id);
+      localStorage.setItem('nombreUsuario', data.nombre)
       setUsuarioLocal(data);
+      setLoading(false)
     } catch (error) {
         console.error("Error en la solicitud:", error);
         if (error.response && error.response.data) {
@@ -39,6 +42,10 @@ const Perfil = () => {
   useEffect(() => {
     getUsuarioData();
   },[]);
+
+  if(loading){
+    return <p>Cargando datos de usuario</p>
+  }
     return (
         <div className="perfil flex container">
             <Row className='container'>
@@ -48,7 +55,7 @@ const Perfil = () => {
                         <img src={profile} className='placeholderProfile'></img>
                         <p>¡Bienvenido/a <span>{usuario.nombre}</span>!</p>
                         <p>{usuario.email}</p>
-                        <p>ID: {idUsuario}</p>
+                        <p>ID: {usuario.id}</p>
                     </div>
                 </Col>
                 <Col>
