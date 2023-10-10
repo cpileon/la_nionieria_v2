@@ -29,10 +29,10 @@ export default function Producto() {
         navigate("/tienda")
     }
 
-    const agregarAlCarrito = ({ id, price, name, img }) => {
+    const agregarAlCarrito = ({ id, precio, nombre, imagen }) => {
         const itemProducto = productos.find((item) => item.id === id);
         const index = prevCarrito.findIndex((item) => item.id === id)
-        const producto = { id, price, name, img, count: 1 };
+        const producto = { id, precio, nombre, imagen, count: 1 };
 
         if (index >= 0) {
             prevCarrito[index].count++;
@@ -44,8 +44,8 @@ export default function Producto() {
         }
 
         setTotal(
-            prevCarrito.reduce((a, { price, count }) =>
-                a + price * count
+            prevCarrito.reduce((a, { precio, count }) =>
+                a + precio * count
                 , 0)
         );
 
@@ -58,10 +58,10 @@ export default function Producto() {
 
     console.log(chosenProducto);
 
-      //Animación de entrada
-        useEffect(()=>{
-            Aos.init({duration: 2000})
-        }, [])
+    //Animación de entrada
+    useEffect(() => {
+        Aos.init({ duration: 2000 })
+    }, [])
 
     return (
         <div className="detalleProducto section container" data-aos='fade-up' data-aos-duration='1500'>
@@ -70,31 +70,31 @@ export default function Producto() {
                     <Row>
                         <Col>
                             <div className="productImage">
-                                <img className="imgContainer" src={chosenProducto[0].img} alt="" />
+                                <img className="imgContainer" src={chosenProducto[0].imagen} alt="" />
                             </div>
                         </Col>
                         <Col>
-                    <Card.Body>
-                        <Card.Title className="titleP"><h2>{chosenProducto[0].name}</h2></Card.Title>
-                        <Card.Text>
-                            {chosenProducto[0].desc}
-                        </Card.Text>
-                        <hr />
-                        <dl>
-                            <dt>Detalles del Producto:</dt>
-                            <br />
-                            <Card.Text className="categoria">{chosenProducto[0].cat}</Card.Text>
-                            <Card.Text className="estado">{chosenProducto[0].stat}</Card.Text>
-                        </dl>
-                        <hr />
-                        <div className="bottom">
-                            <h3>Precio: ${chosenProducto[0].price.toLocaleString()}</h3>
-                            <button className="btnOne" onClick={() => agregarAlCarrito(chosenProducto[0])} id={chosenProducto[0].id} >Añadir 🛒</button>
-                        </div>
-                        
-                    </Card.Body>
-                    <div><button className="btnTwo" onClick={volverTienda}>Atrás</button></div>
-                    </Col>
+                            <Card.Body>
+                                <Card.Title className="titleP"><h2>{chosenProducto[0].nombre}</h2></Card.Title>
+                                <Card.Text>
+                                    {chosenProducto[0].descripcion}
+                                </Card.Text>
+                                <hr />
+                                <dl>
+                                    <dt>Detalles del Producto:</dt>
+                                    <br />
+                                    <Card.Text className="categoria">{chosenProducto[0].categoria}</Card.Text>
+                                    <Card.Text className="estado">{chosenProducto[0].estado}</Card.Text>
+                                </dl>
+                                <hr />
+                                <div className="bottom">
+                                    <h3>Precio: ${chosenProducto[0].precio.toLocaleString()}</h3>
+                                    <button className="btnOne" onClick={() => agregarAlCarrito(chosenProducto[0])} id={chosenProducto[0].id} >Añadir 🛒</button>
+                                </div>
+
+                            </Card.Body>
+                            <div><button className="btnTwo" onClick={volverTienda}>Atrás</button></div>
+                        </Col>
                     </Row>
                 </Card>
 

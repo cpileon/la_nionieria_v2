@@ -12,7 +12,6 @@ export default function Publicar() {
         idUsuario: idUsuario,
         nombre: "",
         precio: "",
-        stock: "",
         imagen: "",
         descripcion: "",
         categoria: "",
@@ -30,7 +29,6 @@ export default function Publicar() {
         if (
             productoNuevo.nombre &&
             productoNuevo.precio &&
-            productoNuevo.stock &&
             productoNuevo.imagen &&
             productoNuevo.descripcion &&
             productoNuevo.categoria &&
@@ -56,7 +54,6 @@ export default function Publicar() {
                 idUsuario: idUsuario,
                 nombre: "",
                 precio: "",
-                stock: "",
                 imagen: "",
                 descripcion: "",
                 categoria: "",
@@ -95,18 +92,6 @@ export default function Publicar() {
                         id="precio"
                         name="precio"
                         value={productoNuevo.precio}
-                        onChange={handleChange}
-                        className="form-control"
-                        required
-                    />
-                </div>
-                <div className="form-group gStock">
-                    <label htmlFor="stock">Stock Disponible:</label>
-                    <input
-                        type="number"
-                        id="stock"
-                        name="stock"
-                        value={productoNuevo.stock}
                         onChange={handleChange}
                         className="form-control"
                         required
