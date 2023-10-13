@@ -11,11 +11,11 @@ export default function MisProductos() {
     const getMisProductosData = async () => {
         const urlServer = "http://localhost:3000";
         const endpoint = "/misproductos";
+        const idUsuario = localStorage.getItem('idUsuario');
 
         try {
             //de data sacamos la id_usuario
-            const { data } = await axios.get(urlServer + endpoint, {
-            });
+            const { data } = await axios.post(urlServer + endpoint, { idUsuario: idUsuario });
             setMisProductos(data);
 
         } catch (error) {
@@ -79,3 +79,5 @@ export default function MisProductos() {
         </div>
     );
 }
+
+
