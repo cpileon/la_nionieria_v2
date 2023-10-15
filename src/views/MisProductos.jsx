@@ -26,6 +26,11 @@ export default function MisProductos() {
             alert("Ha ocurrido un error en la solicitud. 🙁");
         }
     }
+    const navigate = useNavigate();
+
+    const verDetalle = (e) => {
+        navigate(`/producto/${e.target.id}`)
+    }
 
     useEffect(() => {
         getMisProductosData();
@@ -47,8 +52,9 @@ export default function MisProductos() {
     }
 
     return (
-        <div className="cont">
-            <h1>Mis Productos</h1>
+        <>
+        <div className="gridProducts section container">
+        <h1>Mis Productos</h1>
             <div className="galeria">
                 {misProductos.map((producto) => {
                     return (
@@ -77,6 +83,7 @@ export default function MisProductos() {
                 })}
             </div>
         </div>
+        </>
     );
 }
 

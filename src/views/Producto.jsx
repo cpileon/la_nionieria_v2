@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 
@@ -14,16 +15,35 @@ import Col from 'react-bootstrap/Col'
 
 export default function Producto() {
 
-    const { productos, prevCarrito, setPrevCarrito, total, setTotal } = useContext(Context)
+    /*const { productos, prevCarrito, setPrevCarrito, total, setTotal } = useContext(Context)*/
 
-    const [chosenProducto, setChosenProducto] = useState();
+    const [chosenProducto, setChosenProducto] = useState({});
 
     const params = useParams();
     const navigate = useNavigate();
 
     const getChosenProducto = () => {
-        return setChosenProducto(productos.filter((item) => item.id === params.id));
+        const selectedProduct = productos.find((item) => item.id === params.id);
+        if (selectedProduct) {
+            setChosenProducto(selectedProduct);
+        }
     };
+
+    const obtenerProducto = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/producto/${params.id}`);
+            if (response.data) {
+              setChosenProducto(response.data);
+            } else {
+              // Manejar el caso en el que no se encuentre el producto, por ejemplo, redirigiendo a una página de error.
+              console.error("Producto no encontrado");
+              // Puedes redirigir o mostrar un mensaje de error.
+            }
+          } catch (error) {
+            console.error(error);
+            // Manejar el error, por ejemplo, mostrando un mensaje de error.
+          }
+      };
 
     const volverTienda = (e) => {
         navigate("/tienda")
@@ -51,10 +71,22 @@ export default function Producto() {
 
         console.log("este es el total:" + (total))
     }
-
+/*
     useEffect(() => {
-        getChosenProducto();
-    }, []);
+        if (productos.length > 0) {
+            getChosenProducto();
+            console.log("id del producto:", params.id)
+            console.log("Array de productos:", productos)
+            console.log("Producto seleccionado: ",chosenProducto)
+        } else {
+            console.log("No se ha recibido el id")
+        }
+    }, [productos]);
+    */
+    useEffect(() => {
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        obtenerProducto();
+      }, [params.id]);
 
     console.log(chosenProducto);
 
@@ -65,31 +97,33 @@ export default function Producto() {
 
     return (
         <div className="detalleProducto section container" data-aos='fade-up' data-aos-duration='1500'>
-            {chosenProducto ? (
+            
+        {
+            chosenProducto ? (
                 <Card className="container">
                     <Row>
                         <Col>
                             <div className="productImage">
-                                <img className="imgContainer" src={chosenProducto[0].imagen} alt="" />
+                                <img className="imgContainer" src={chosenProducto.imagen} alt="" />
                             </div>
                         </Col>
                         <Col>
                             <Card.Body>
-                                <Card.Title className="titleP"><h2>{chosenProducto[0].nombre}</h2></Card.Title>
+                                <Card.Title className="titleP"><h2>{chosenProducto.nombre}</h2></Card.Title>
                                 <Card.Text>
-                                    {chosenProducto[0].descripcion}
+                                    {chosenProducto.descripcion}
                                 </Card.Text>
                                 <hr />
                                 <dl>
                                     <dt>Detalles del Producto:</dt>
                                     <br />
-                                    <Card.Text className="categoria">{chosenProducto[0].categoria}</Card.Text>
-                                    <Card.Text className="estado">{chosenProducto[0].estado}</Card.Text>
+                                    <Card.Text className="categoria">{chosenProducto.categoria}</Card.Text>
+                                    <Card.Text className="estado">{chosenProducto.estado}</Card.Text>
                                 </dl>
                                 <hr />
                                 <div className="bottom">
-                                    <h3>Precio: ${chosenProducto[0].precio.toLocaleString()}</h3>
-                                    <button className="btnOne" onClick={() => agregarAlCarrito(chosenProducto[0])} id={chosenProducto[0].id} >Añadir 🛒</button>
+                                    <h3>Precio: ${chosenProducto.precio}</h3>
+                                    <button className="btnOne" onClick={() => agregarAlCarrito(chosenProducto)} id={chosenProducto.id}>Añadir 🛒</button>
                                 </div>
 
                             </Card.Body>
@@ -99,7 +133,7 @@ export default function Producto() {
                 </Card>
 
             ) : null
-            }
+        }
         </div >
     )
 }

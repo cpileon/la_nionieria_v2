@@ -8,6 +8,7 @@ import Cards from "../Components/Cards";
 
 export default function Tienda() {
 
+
     const { productos, getProductos } = useContext(Context);
 
     return (

@@ -30,6 +30,8 @@ export default function RegistroForm() {
             console.log(message);
         }
     };
+
+    
     
     return (
         <div className="login col-10 col-sm-6 col-md-3 m-auto mt-5 section">

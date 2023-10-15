@@ -334,6 +334,7 @@
 }
 .galeria .imgCard {
   height: 300px;
+  width: auto;
 }
 .galeria .botones {
   display: flex;
