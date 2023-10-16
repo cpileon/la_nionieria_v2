@@ -47,8 +47,8 @@ const Navegacion = () => {
                   {localStorage.getItem('token') ? (
                     <NavDropdown title={`¡Hola ${localnombre}!`} id="basic-nav-dropdown" menuVariant="dark" className={navbar}>
                       <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">Placeholder</NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">Placeholder</NavDropdown.Item>
+                      <NavDropdown.Item href="/misproductos">Mis Productos</NavDropdown.Item>
+                      <NavDropdown.Item href="/publicar">Publicar Producto</NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item onClick={logout}>Cerrar sesión</NavDropdown.Item>
                     </NavDropdown>
@@ -58,10 +58,10 @@ const Navegacion = () => {
                       <Nav.Link className="mx-1" href="/register">Registro</Nav.Link>
                     </>
                   )}
-                  <Nav.Link href="/carrito">🛒Carrito</Nav.Link>
-                  <Nav.Link className={setActiveClass} to="/Carrito">
-                    : ${total ? total.toLocaleString() : 0}
+                  <Nav.Link className={setActiveClass} href="/Carrito">
+                    🛒 Carrito: ${total ? total.toLocaleString() : 0}
                   </Nav.Link>
+
                 </div>
               </Container>
             </Nav>

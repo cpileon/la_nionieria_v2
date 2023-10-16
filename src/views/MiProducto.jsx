@@ -46,7 +46,7 @@ export default function Producto() {
     };
 
     const volverTienda = (e) => {
-        navigate("/tienda")
+        navigate("/misproductos")
     }
 
     const agregarAlCarrito = ({ id, precio, nombre, imagen }) => {

@@ -41,6 +41,24 @@ export default function Cards() {
         navigate(`/producto/${e.target.id}`)
     }
 
+    /* const agregarAlCarrito = (e) => {
+        const itemProducto = productos.find((item) => item.id === e.target.id);
+        const index = prevCarrito.findIndex((item) => item.id === itemProducto.id)
+
+        const producto = { e, count: 1 };
+
+        if (index === -1) {
+            setPrevCarrito([...prevCarrito, { id: itemProducto.id, precio: itemProducto.precio, nombre: itemProducto.nombre, imagen: itemProducto.imagen, cant: 1 }])
+        } else {
+            const newCarrito = [...prevCarrito];
+            newCarrito[index].cant++;
+            setPrevCarrito(newCarrito);
+
+        }
+
+        console.log("este es el total:" + (total))
+    } */
+
     const agregarAlCarrito = ({ id, precio, nombre, imagen }) => {
         const itemProducto = productos.find((item) => item.id === id);
         const index = prevCarrito.findIndex((item) => item.id === id)
@@ -79,7 +97,8 @@ export default function Cards() {
                             </Card.Text>
                             <div className="botones">
                                 <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>
-                                <button className="btnTwo" onClick={() => agregarAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>
+                                <button className="btnTwo" onClick={agregarAlCarrito} id={producto.id}>Añadir 🛒</button>
+                                {/* <button className="btnTwo" onClick={() => agregarAlCarrito(producto)} id={producto.id}>Añadir 🛒</button> */}
                             </div>
                         </Card.Body>
                     </Card>

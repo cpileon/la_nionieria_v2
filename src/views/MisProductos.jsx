@@ -29,7 +29,7 @@ export default function MisProductos() {
     const navigate = useNavigate();
 
     const verDetalle = (e) => {
-        navigate(`/producto/${e.target.id}`)
+        navigate(`/miproducto/${e.target.id}`)
     }
 
     useEffect(() => {
@@ -51,38 +51,59 @@ export default function MisProductos() {
         }
     }
 
+    const eliminarProducto = async (id) => {
+        const urlServer = "http://localhost:3000";
+        await axios.delete(urlServer + `/producto/${id}`);
+        getMisProductosData();
+    };
+
+    const eliminarProductoPorId = async (id) => {
+        try {
+            // elimina el producto en la base de datos
+            await eliminarProducto(id);
+
+            // actualiza la lista de productos localmente
+            const newProductos = misProductos.filter((producto) => producto.id !== id);
+            setMisProductos(newProductos);
+            alert("Producto eliminado correctamente");
+        } catch (error) {
+            console.error("Error al eliminar el producto:", error);
+        }
+    };
+
     return (
         <>
-        <div className="gridProducts section container">
-        <h1>Mis Productos</h1>
-            <div className="galeria">
-                {misProductos.map((producto) => {
-                    return (
-                        <Card key={producto.id} style={{ width: '20rem' }}>
-                            <Card.Img variant="top" src={producto.imagen} className="imgCard" />
-                            <Card.Body>
-                                <Card.Title className="titles">{producto.nombre}</Card.Title>
-                                <hr />
-                                <dl>
-                                    <dt>Detalles del Producto:</dt>
-                                    <br />
-                                    <Card.Text className="categoria">{producto.categoria}</Card.Text>
-                                    <Card.Text className="estado">{producto.estado}</Card.Text>
-                                </dl>
-                                <hr />
-                                <Card.Text className="prices">
-                                    <strong> $ {producto.precio.toLocaleString()} </strong>
-                                </Card.Text>
-                                <div className="botones">
-                                    <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>
-                                    <button className="btnTwo" onClick={() => agregarAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    )
-                })}
+            <div className="gridProducts section container">
+                <h1>Mis Productos</h1>
+                <div className="galeria">
+                    {misProductos.map((producto) => {
+                        return (
+                            <Card key={producto.id} style={{ width: '20rem' }}>
+                                <Card.Img variant="top" src={producto.imagen} className="imgCard" />
+                                <Card.Body>
+                                    <Card.Title className="titles">{producto.nombre}</Card.Title>
+                                    <hr />
+                                    <dl>
+                                        <dt>Detalles del Producto:</dt>
+                                        <br />
+                                        <Card.Text className="categoria">{producto.categoria}</Card.Text>
+                                        <Card.Text className="estado">{producto.estado}</Card.Text>
+                                    </dl>
+                                    <hr />
+                                    <Card.Text className="prices">
+                                        <strong> $ {producto.precio.toLocaleString()} </strong>
+                                    </Card.Text>
+                                    <div className="botones">
+                                        <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>
+                                        <button className="btnThree" onClick={() => eliminarProductoPorId(producto.id)} id={producto.id}>Eliminar ❌</button>
+                                        <button className="btnTwo" onClick={() => agregarAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })}
+                </div>
             </div>
-        </div>
         </>
     );
 }

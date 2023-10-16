@@ -9,6 +9,7 @@ export const Provider = ({ children }) => {
     const [nombre, setNombre] = useState(null)
     const [productos, setProductos] = useState([]);
     const [prevCarrito, setPrevCarrito] = useState([]);
+    const [total, setTotal] = useState(0)
 
     //Estado para cambiar visibilización de la navbar
     const [navbar, setNavbar] = useState();
@@ -44,7 +45,7 @@ export const Provider = ({ children }) => {
         }, []); */
 
 
-    const globalState = { productos, prevCarrito, setPrevCarrito, navbar, setNavbar, usuario, setUsuario, logout, setProductos, nombre, setNombre }
+    const globalState = { productos, prevCarrito, setPrevCarrito, total, setTotal, navbar, setNavbar, usuario, setUsuario, logout, setProductos, nombre, setNombre }
 
     return <Context.Provider value={globalState}>
         {children}

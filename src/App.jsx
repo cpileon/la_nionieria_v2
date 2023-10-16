@@ -18,6 +18,7 @@ import Producto from './views/Producto'
 import Carrito from './views/Carrito'
 import Publicar from './views/Publicar'
 import MisProductos from './views/MisProductos'
+import MiProducto from './views/MiProducto'
 
 
 //HOLAHOLA//
@@ -35,6 +36,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/tienda" element={<Tienda />} />
             <Route path="/producto/:id" element={<Producto />} />
+            <Route path="/miproducto/:id" element={<MiProducto />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/publicar" element={<Publicar />} />
