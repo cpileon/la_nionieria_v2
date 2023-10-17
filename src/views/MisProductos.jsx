@@ -52,7 +52,7 @@ export default function MisProductos() {
     }
 
     const eliminarProducto = async (id) => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://server-trabajo-final-g3.onrender.com";
         await axios.delete(urlServer + `/producto/${id}`);
         getMisProductosData();
     };

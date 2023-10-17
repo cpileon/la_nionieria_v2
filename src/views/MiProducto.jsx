@@ -31,7 +31,7 @@ export default function Producto() {
 
     const obtenerProducto = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/producto/${params.id}`);
+            const response = await axios.get(`https://server-trabajo-final-g3.onrender.com/producto/${params.id}`);
             if (response.data) {
                 setChosenProducto(response.data);
             } else {

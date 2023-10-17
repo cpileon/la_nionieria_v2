@@ -41,7 +41,7 @@ export default function Publicar() {
     };
 
     const publicarProducto = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://server-trabajo-final-g3.onrender.com";
         const endpoint = "/publicar";
 
         try {

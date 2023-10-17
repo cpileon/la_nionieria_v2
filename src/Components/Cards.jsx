@@ -12,7 +12,7 @@ import Card from 'react-bootstrap/Card';
 export default function Cards() {
     const { productos, setProductos, prevCarrito, setPrevCarrito } = useContext(Context);
     const getProductosData = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://server-trabajo-final-g3.onrender.com";
         const endpoint = "/productos";
 
         try {
