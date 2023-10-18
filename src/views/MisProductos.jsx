@@ -9,7 +9,7 @@ export default function MisProductos() {
 
     const [misProductos, setMisProductos] = useState([]);
     const getMisProductosData = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://server-trabajo-final-g3.onrender.com";
         const endpoint = "/misproductos";
         const idUsuario = localStorage.getItem('idUsuario');
 
