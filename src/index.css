@@ -18,6 +18,17 @@
   font-family: "Kanit", sans-serif;
 }
 
+a {
+  color: var(--ColorPrimario);
+}
+a:link, a:active {
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  color: var(--ColorPrimario);
+}
+
 .container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -78,6 +89,16 @@
   transition-duration: 0.4s;
 }
 .btnThree:hover {
+  box-shadow: var(--greyShadowBtn);
+}
+
+.btnReglog {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  transition-duration: 0.4s;
+}
+.btnReglog:hover {
   box-shadow: var(--greyShadowBtn);
 }
 

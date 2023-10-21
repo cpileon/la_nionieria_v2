@@ -54,8 +54,8 @@ const Navegacion = () => {
                     </NavDropdown>
                   ) : (
                     <>
-                      <Nav.Link className="mx-1" href="/login">Login</Nav.Link>
-                      <Nav.Link className="mx-1" href="/register">Registro</Nav.Link>
+                      <Nav.Link className="btnReglog text-light bg-dark mx-1 " href="/login">Login</Nav.Link>
+                      <Nav.Link className="btnReglog text-light bg-dark mx-1 " href="/register">Registro</Nav.Link>
                     </>
                   )}
                   <Nav.Link className={setActiveClass} href="/Carrito">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -82,7 +82,7 @@ export default function RegistroForm() {
             </div>
 
             <div className="textReg">
-                <p className="text1">¿Ya tienes una cuenta? <span>Inicia tu sesión</span></p>
+                <p className="text1">¿Ya tienes una cuenta? <span> <Link to="/login">Inicia tu sesión</Link></span></p>
             </div>
         </div>
     );

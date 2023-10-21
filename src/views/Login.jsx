@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import Context from "../Context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import axios from "axios";
 
 export default function RegistroForm() {
@@ -66,7 +66,7 @@ export default function RegistroForm() {
             </div>
             <div className="textLogin">
                 <p className="text1">¿No tienes una cuenta?</p>
-                <p>¡Registrate aquí y disfruta todos nuestros beneficios!</p>
+                <p>¡<Link to="/register">Registrate aquí</Link> y disfruta todos nuestros beneficios!</p>
             </div>
         </div>
     );
