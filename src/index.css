@@ -102,10 +102,6 @@ a:hover {
   box-shadow: var(--greyShadowBtn);
 }
 
-.noShow {
-  display: none;
-}
-
 .navegacion {
   width: 100%;
 }
