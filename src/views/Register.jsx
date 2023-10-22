@@ -76,7 +76,7 @@ export default function RegistroForm() {
             </div>
 
             <div className="botonReg">
-                <button onClick={registrarUsuario} className="btnOne btn-warning mt-3">
+                <button onClick={registrarUsuario} className="btnOne btn-warning my-3">
                     Registrarme
                 </button>
             </div>

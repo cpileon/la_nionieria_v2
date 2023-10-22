@@ -125,7 +125,7 @@ export default function Producto() {
                                     </div>
 
                                 </Card.Body>
-                                <div><button className="btnTwo" onClick={volverTienda}>Atrás</button></div>
+                                <div><button className="btnTwo m-3" onClick={volverTienda}>Atrás</button></div>
                             </Col>
                         </Row>
                     </Card>

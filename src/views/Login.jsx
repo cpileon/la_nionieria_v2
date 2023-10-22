@@ -60,7 +60,7 @@ export default function RegistroForm() {
                 />
             </div>
             <div className="botonLogin">
-                <button onClick={iniciarSesion} className="btnOne">
+                <button onClick={iniciarSesion} className="btnOne mt-4">
                     Inicia Sesión
                 </button>
             </div>

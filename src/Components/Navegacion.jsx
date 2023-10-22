@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logosolo from '../assets/logosolo.png'
 import Context from "../Context";
+import {BiSolidUserCircle} from 'react-icons/bi'
 
 const Navegacion = () => {
   const [localnombre, setlocalnombre] = useState('');
@@ -16,15 +17,10 @@ const Navegacion = () => {
     if (token) {
       const nombre = localStorage.getItem('nombreUsuario');
       setlocalnombre(nombre);
-      setNavbar('mia');
-    } else {
-      setNavbar('noShow');
     }
   }, [compToken]);
 
   const total = prevCarrito.reduce((a, { price, count }) => a + price * count, 0);
-
-  const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
   return (
     <div>
@@ -40,12 +36,12 @@ const Navegacion = () => {
             <Nav className="me-auto">
               <Container className="containerBtns flex justify-content-between">
                 <div className="leftsideNav flex">
-                  <Nav.Link className="mx-1" href="/">Home</Nav.Link>
-                  <Nav.Link className="mx-1" href="/tienda">Tienda</Nav.Link>
+                  <Nav.Link className="linkNav mx-1" href="/">Home</Nav.Link>
+                  <Nav.Link className="linkNav mx-1" href="/tienda">Tienda</Nav.Link>
                 </div>
                 <div className="rightsideNav flex ml-auto">
                   {localStorage.getItem('token') ? (
-                    <NavDropdown title={`¡Hola ${localnombre}!`} id="basic-nav-dropdown" menuVariant="dark" className={navbar}>
+                    <NavDropdown title={<span className='botonUser'><BiSolidUserCircle/> Bienvenido/a {localnombre}</span>} id="basic-nav-dropdown" menuVariant="dark">
                       <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
                       <NavDropdown.Item href="/misproductos">Mis Productos</NavDropdown.Item>
                       <NavDropdown.Item href="/publicar">Publicar Producto</NavDropdown.Item>
@@ -58,7 +54,7 @@ const Navegacion = () => {
                       <Nav.Link className="btnReglog text-light bg-dark mx-1 " href="/register">Registro</Nav.Link>
                     </>
                   )}
-                  <Nav.Link className={setActiveClass} href="/Carrito">
+                  <Nav.Link className="linkNav" href="/Carrito">
                     🛒 Carrito: ${total ? total.toLocaleString() : 0}
                   </Nav.Link>
 

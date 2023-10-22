@@ -75,25 +75,27 @@ export default function MisProductos() {
         <>
             <div className="gridProducts section container">
                 <h1>Mis Productos</h1>
-                <div className="galeria">
+                <div className="misProductos">
                     {misProductos.map((producto) => {
                         return (
-                            <Card key={producto.id} style={{ width: '20rem' }}>
-                                <Card.Img variant="top" src={producto.imagen} className="imgCard" />
-                                <Card.Body>
-                                    <Card.Title className="titles">{producto.nombre}</Card.Title>
-                                    <hr />
-                                    <dl>
-                                        <dt>Detalles del Producto:</dt>
-                                        <br />
-                                        <Card.Text className="categoria">{producto.categoria}</Card.Text>
-                                        <Card.Text className="estado">{producto.estado}</Card.Text>
-                                    </dl>
-                                    <hr />
-                                    <Card.Text className="prices">
-                                        <strong> $ {producto.precio.toLocaleString()} </strong>
-                                    </Card.Text>
-                                    <div className="botones">
+                            <Card key={producto.id} className='miCard d-flex flex-row m-4 align-items-center'>
+                                <Card.Img variant="top" src={producto.imagen} className="imgCard m-4" />
+                                <Card.Body className='d-flex justify-content-between align-items-center'> 
+                                    <div className='contentMiCard m-1'>
+                                        <Card.Title className="titles">{producto.nombre}</Card.Title>
+                                        <hr />
+                                        <dl>
+                                            <dt>Detalles del Producto:</dt>
+                                            <br />
+                                            <Card.Text className="categoria">{producto.categoria}</Card.Text>
+                                            <Card.Text className="estado">{producto.estado}</Card.Text>
+                                        </dl>
+                                        <hr />
+                                        <Card.Text className="prices">
+                                            <strong> $ {producto.precio.toLocaleString()} </strong>
+                                        </Card.Text>
+                                    </div>
+                                    <div className="botones d-flex flex-column m-2 gap-3">
                                         <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>
                                         <button className="btnThree" onClick={() => eliminarProductoPorId(producto.id)} id={producto.id}>Eliminar ❌</button>
                                         <button className="btnTwo" onClick={() => agregarAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>

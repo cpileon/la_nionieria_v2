@@ -3,8 +3,10 @@
 :root {
   --ColorPrimario: hsl(15, 74%, 70%);
   --ColorSecundario: hsl(255, 100%, 85%);
+  --ColorTerciario:rgb(173, 173, 173);
   --gris: hsl(0, 0%, 20%);
   --agua: hsl(178, 15%, 67%);
+  --categoria: hsl(0, 0%, 56%);
   --transition: .4s ease-in-out;
   --whiteShadow: drop-shadow(2px 2px 0px #ffffff);
   --whiteShadow2: drop-shadow(6px 6px 0px #ffffff);
@@ -18,9 +20,6 @@
   font-family: "Kanit", sans-serif;
 }
 
-a {
-  color: var(--ColorPrimario);
-}
 a:link, a:active {
   text-decoration: none;
   transition: var(--transition);
@@ -56,7 +55,6 @@ a:hover {
 
 .btnOne {
   background-color: var(--ColorPrimario);
-  margin: 1.5rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 10px;
@@ -69,7 +67,6 @@ a:hover {
 
 .btnTwo {
   background-color: var(--ColorSecundario);
-  margin: 1.5rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 10px;
@@ -81,14 +78,14 @@ a:hover {
 }
 
 .btnThree {
-  background-color: transparent;
-  margin: 1.5rem;
+  background-color: #cfcfcf;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 10px;
   transition-duration: 0.4s;
 }
 .btnThree:hover {
+  background-color: var(--agua);
   box-shadow: var(--greyShadowBtn);
 }
 
@@ -102,11 +99,49 @@ a:hover {
   box-shadow: var(--greyShadowBtn);
 }
 
+.categoria {
+  display: inline-block;
+  color: white;
+  margin-right: 1rem;
+  padding: 0rem 1rem;
+  background-color: var(--categoria);
+  border-radius: 5px;
+}
+
+.estado {
+  display: inline-block;
+  color: white;
+  padding: 0rem 1rem;
+  background-color: var(--gris);
+  border-radius: 5px;
+}
+
+.botonUser {
+  background-color: hsla(0, 100%, 90%, 0.5);
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  transition-duration: 0.2s;
+}
+.botonUser:hover {
+  background-color: hsla(0, 100%, 90%, 0.9);
+}
+
 .navegacion {
   width: 100%;
 }
 .navegacion .navCont1 {
   width: 100%;
+}
+.navegacion .navCont1 .linkNav {
+  transition-duration: 0.1s;
+}
+.navegacion .navCont1 .linkNav:hover {
+  background-color: hsla(0, 100%, 90%, 0.5);
+  border-radius: 10px;
+}
+.navegacion .navCont1 .active {
+  color: darkgreen;
+  font-weight: bold;
 }
 .navegacion .navCont1 .brand .logo {
   height: 30px;
@@ -349,11 +384,15 @@ a:hover {
   grid-template-columns: auto auto auto;
   gap: 1rem;
 }
-.galeria .imgCard {
-  height: 300px;
-  width: auto;
+.galeria .cardGaleria {
+  box-shadow: var(--greyShadowBtn);
 }
-.galeria .botones {
+.galeria .cardGaleria .imgCard {
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.galeria .cardGaleria .botones {
   display: flex;
   justify-content: space-around;
 }
@@ -383,6 +422,18 @@ a:hover {
 .cont .botones {
   display: flex;
   justify-content: space-around;
+}
+
+.misProductos .miCard {
+  display: flex;
+  box-shadow: var(--greyShadowBtn);
+}
+.misProductos .miCard .imgCard {
+  height: 200px;
+  width: auto;
+}
+.misProductos .miCard .contentMiCard {
+  width: 100%;
 }
 
 /*Importar bootstrap*/

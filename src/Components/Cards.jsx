@@ -80,16 +80,18 @@ export default function Cards() {
         <div className="galeria">
             {productos.map((producto) => {
                 return (
-                    <Card key={producto.id} style={{ width: '18rem' }}>
-                        <Card.Img className="imgCard" variant="top" src={producto.imagen} />
+                    <Card key={producto.id} style={{ width: '18rem' }} className='cardGaleria'>
+                        <Card.Img className="imgCard embed-responsive-item" variant="top" src={producto.imagen} />
                         <Card.Body>
                             <Card.Title className="titles">{producto.nombre}</Card.Title>
                             <hr />
                             <dl>
                                 <dt>Detalles del Producto:</dt>
                                 <br />
+                                <div>
                                 <Card.Text className="categoria">{producto.categoria}</Card.Text>
                                 <Card.Text className="estado">{producto.estado}</Card.Text>
+                                </div>
                             </dl>
                             <hr />
                             <Card.Text className="prices">

@@ -19,7 +19,6 @@ export const Provider = ({ children }) => {
     //Función para logout
     const navigate = useNavigate();
     const logout = () => {
-        //Falta eliminar todo lo del usuario global
         setUsuario(null);
         localStorage.removeItem("nombreUsuario");
         localStorage.removeItem("token");
