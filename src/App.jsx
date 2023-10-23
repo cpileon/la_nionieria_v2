@@ -21,8 +21,6 @@ import MisProductos from './views/MisProductos'
 import MiProducto from './views/MiProducto'
 
 
-//HOLAHOLA//
-
 function App() {
 
   return (

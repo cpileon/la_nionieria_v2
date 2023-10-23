@@ -5,7 +5,7 @@ import Aos from 'aos'
 import 'aos/dist/aos.css'
 
 //Importar Contexto
-import Context from "../Context";
+import { Context } from "../Context";
 
 //Importar elementos bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,19 +15,12 @@ import Col from 'react-bootstrap/Col'
 
 export default function Producto() {
 
-    const { productos, prevCarrito, setPrevCarrito, total, setTotal } = useContext(Context)
+    const { carrito, agregarAlCarrito, totalPrecioCarrito, setTotalPrecioCarrito } = useContext(Context)
 
     const [chosenProducto, setChosenProducto] = useState({});
 
     const params = useParams();
     const navigate = useNavigate();
-
-    const getChosenProducto = () => {
-        const selectedProduct = productos.find((item) => item.id === params.id);
-        if (selectedProduct) {
-            setChosenProducto(selectedProduct);
-        }
-    };
 
     const obtenerProducto = async () => {
         try {
@@ -35,13 +28,10 @@ export default function Producto() {
             if (response.data) {
                 setChosenProducto(response.data);
             } else {
-                // Manejar el caso en el que no se encuentre el producto, por ejemplo, redirigiendo a una página de error.
                 console.error("Producto no encontrado");
-                // Puedes redirigir o mostrar un mensaje de error.
             }
         } catch (error) {
             console.error(error);
-            // Manejar el error, por ejemplo, mostrando un mensaje de error.
         }
     };
 
@@ -49,38 +39,6 @@ export default function Producto() {
         navigate("/tienda")
     }
 
-    const agregarAlCarrito = ({ id, precio, nombre, imagen }) => {
-        const itemProducto = productos.find((item) => item.id === id);
-        const index = prevCarrito.findIndex((item) => item.id === itemProducto.id)
-        const producto = { id, precio, nombre, imagen, count: 1 };
-
-        if (index >= 0) {
-            prevCarrito[index].count++;
-            setPrevCarrito([...prevCarrito]);
-
-        } else {
-            setPrevCarrito([...prevCarrito, producto]);
-
-            setTotal(
-                prevCarrito.reduce((a, { precio, count }) =>
-                    a + precio * count
-                    , 0)
-            );
-        }
-        console.log("este es el total:" + (total))
-    }
-    /*
-        useEffect(() => {
-            if (productos.length > 0) {
-                getChosenProducto();
-                console.log("id del producto:", params.id)
-                console.log("Array de productos:", productos)
-                console.log("Producto seleccionado: ",chosenProducto)
-            } else {
-                console.log("No se ha recibido el id")
-            }
-        }, [productos]);
-        */
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         obtenerProducto();
@@ -92,6 +50,31 @@ export default function Producto() {
     useEffect(() => {
         Aos.init({ duration: 2000 })
     }, [])
+
+    const agregarProductoAlCarrito = (chosenProducto) => {
+        if (localStorage.getItem('token')) {
+            // Si el usuario está autenticado, puede agregar el producto al carrito.
+            const productoExistente = carrito.find((item) => item.id === chosenProducto.id);
+
+            if (!productoExistente) {
+                // Agregar el producto al carrito con una cantidad de 1
+                chosenProducto.cantidad = 1;
+                agregarAlCarrito(chosenProducto);
+
+                // Actualiza el estado totalPrecioCarrito en el contexto
+                setTotalPrecioCarrito((totalPrecioCarrito) => totalPrecioCarrito + chosenProducto.precio);
+
+                // Actualiza el almacenamiento local
+                localStorage.setItem("carrito", JSON.stringify([...carrito, chosenProducto]));
+                localStorage.setItem("precioTotal", (totalPrecioCarrito + chosenProducto.precio).toString());
+            } else {
+                alert("Ya has agregado este producto al carrito, solo puedes agregarlo una vez.");
+            }
+        } else {
+            // Si el usuario no está autenticado, lo redirige a la página de inicio de sesión
+            navigate("/login");
+        }
+    };
 
     return (
         <div className="detalleProducto section container" data-aos='fade-up' data-aos-duration='1500'>
@@ -120,8 +103,8 @@ export default function Producto() {
                                     </dl>
                                     <hr />
                                     <div className="bottom">
-                                        <h3>Precio: ${chosenProducto.precio}</h3>
-                                        <button className="btnOne" onClick={() => agregarAlCarrito(chosenProducto)} id={chosenProducto.id}>Añadir 🛒</button>
+                                        <h3>Precio: ${chosenProducto.precio ? chosenProducto.precio.toLocaleString() : ''}</h3>
+                                        <button className="btnOne" onClick={() => agregarProductoAlCarrito(chosenProducto)} id={chosenProducto.id}>Añadir 🛒</button>
                                     </div>
 
                                 </Card.Body>

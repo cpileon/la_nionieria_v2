@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Context from "../Context";
+import { Context } from "../Context";
 import axios from "axios";
 
 export default function Publicar() {

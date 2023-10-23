@@ -4,13 +4,20 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logosolo from '../assets/logosolo.png'
-import Context from "../Context";
-import {BiSolidUserCircle} from 'react-icons/bi'
+import { Context } from "../Context";
+import { BiSolidUserCircle } from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom';
+//import de react-icons para usar fontawesome (para instalar usé: npm install react-icons --save)
+import { FaShoppingCart } from "react-icons/fa";
+//Este ícono se saca de la sección de "Font Awesome 5" del sitio web https://react-icons.github.io/react-icons/icons?name=fa 
+//ojo que para "Font Awesome 6" la importación es diferente :O aquí abajo dejo un ejemplo de otro icono
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navegacion = () => {
   const [localnombre, setlocalnombre] = useState('');
-  const { prevCarrito, navbar, setNavbar, logout } = useContext(Context);
+  const { carrito, logout } = useContext(Context);
   const compToken = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,7 +27,7 @@ const Navegacion = () => {
     }
   }, [compToken]);
 
-  const total = prevCarrito.reduce((a, { price, count }) => a + price * count, 0);
+  const totalProductosCarrito = carrito.length; // Se obtiene la cantidad de productos en el carrito.
 
   return (
     <div>
@@ -41,23 +48,55 @@ const Navegacion = () => {
                 </div>
                 <div className="rightsideNav flex ml-auto">
                   {localStorage.getItem('token') ? (
-                    <NavDropdown title={<span className='botonUser'><BiSolidUserCircle/> Bienvenido/a {localnombre}</span>} id="basic-nav-dropdown" menuVariant="dark">
-                      <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-                      <NavDropdown.Item href="/misproductos">Mis Productos</NavDropdown.Item>
-                      <NavDropdown.Item href="/publicar">Publicar Producto</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={logout}>Cerrar sesión</NavDropdown.Item>
-                    </NavDropdown>
+                    <>
+                      <NavDropdown title={<span className='botonUser'><BiSolidUserCircle /> Bienvenido/a {localnombre}</span>} id="basic-nav-dropdown" menuVariant="dark">
+                        <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
+                        <NavDropdown.Item href="/misproductos">Mis Productos</NavDropdown.Item>
+                        <NavDropdown.Item href="/publicar">Publicar Producto</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={logout}>Cerrar sesión</NavDropdown.Item>
+                      </NavDropdown>
+
+                      <Nav.Link className="carro" href="/carrito" style={{ display: 'flex', alignItems: 'center' }}>
+                        <span
+                          style={{
+                            fontSize: '25px',
+                            marginRight: '6px',
+                            padding: '2px',
+                            display: 'inline-block',
+                          }}
+                        //Aquí abajo puedes comentar o descomentar uno u otro ícono para que veas cuál te gusta más. Ambos ya están importados.
+                        >
+                          {/* <FaShoppingCart /> */}
+                          <FaCartShopping />
+                        </span>
+                        <span className="contador"
+                          style={{
+                            display: 'inline-block',
+                            width: '16px',  // Tamaño del círculo
+                            height: '16px', // Tamaño del círculo
+                            backgroundColor: '#F3799F', // Color de fondo rosado clarito
+                            borderRadius: '50%',
+                            textAlign: 'center',
+                            lineHeight: '15px', // Centra verticalmente el número
+                            color: 'white',
+                            fontSize: '11px', // Ajústalo según tus preferencias
+                            border: '1px solid black', // Borde negro delgado alrededor del círculo
+                            position: 'relative',
+                            bottom: '-11px', // Ajusta la posición vertical del círculo sobre el ícono
+                            right: '20px',  // Ajusta la posición horizontal del círculo sobre el ícono
+                          }}
+                        >
+                          {totalProductosCarrito}
+                        </span>
+                      </Nav.Link>
+                    </>
                   ) : (
                     <>
                       <Nav.Link className="btnReglog text-light bg-dark mx-1 " href="/login">Login</Nav.Link>
                       <Nav.Link className="btnReglog text-light bg-dark mx-1 " href="/register">Registro</Nav.Link>
                     </>
                   )}
-                  <Nav.Link className="linkNav" href="/Carrito">
-                    🛒 Carrito: ${total ? total.toLocaleString() : 0}
-                  </Nav.Link>
-
                 </div>
               </Container>
             </Nav>

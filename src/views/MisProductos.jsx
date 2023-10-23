@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
-import Context from "../Context";
+import { Context } from "../Context";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export default function MisProductos() {
-    const { prevCarrito, setPrevCarrito } = useContext(Context);
-
+    const { carrito, agregarAlCarrito, setTotalPrecioCarrito, totalPrecioCarrito } = useContext(Context);
     const [misProductos, setMisProductos] = useState([]);
+
     const getMisProductosData = async () => {
         const urlServer = "https://server-trabajo-final-g3.onrender.com";
         const endpoint = "/misproductos";
@@ -36,21 +36,6 @@ export default function MisProductos() {
         getMisProductosData();
     }, []);
 
-    const agregarAlCarrito = ({ id, precio, nombre, imagen }) => {
-        const itemProducto = misProductos.find((item) => item.id === id);
-        const index = prevCarrito.findIndex((item) => item.id === id)
-        const producto = { id, precio, nombre, imagen, count: 1 };
-
-        if (index >= 0) {
-            prevCarrito[index].count++;
-            setPrevCarrito([...prevCarrito]);
-
-        } else {
-            setPrevCarrito([...prevCarrito, producto]);
-
-        }
-    }
-
     const eliminarProducto = async (id) => {
         const urlServer = "https://server-trabajo-final-g3.onrender.com";
         await axios.delete(urlServer + `/producto/${id}`);
@@ -71,6 +56,23 @@ export default function MisProductos() {
         }
     };
 
+    const agregarProductoAlCarrito = (producto) => {
+        const productoExistente = carrito.find((item) => item.id === producto.id);
+
+        if (!productoExistente) {
+            agregarAlCarrito(producto);
+
+            // Actualiza el estado totalPrecioCarrito en el contexto
+            setTotalPrecioCarrito(totalPrecioCarrito + (producto.precio * producto.cantidad));
+
+            // Actualiza el almacenamiento local
+            localStorage.setItem("carrito", JSON.stringify([...carrito, producto]));
+            localStorage.setItem("precioTotal", (totalPrecioCarrito + (producto.precio * producto.cantidad)).toString());
+        } else {
+            alert("Ya has agregado este producto al carrito, solo puedes agregarlo una vez.");
+        }
+    }
+
     return (
         <>
             <div className="gridProducts section container">
@@ -80,7 +82,7 @@ export default function MisProductos() {
                         return (
                             <Card key={producto.id} className='miCard d-flex flex-row m-4 align-items-center'>
                                 <Card.Img variant="top" src={producto.imagen} className="imgCard m-4" />
-                                <Card.Body className='d-flex justify-content-between align-items-center'> 
+                                <Card.Body className='d-flex justify-content-between align-items-center'>
                                     <div className='contentMiCard m-1'>
                                         <Card.Title className="titles">{producto.nombre}</Card.Title>
                                         <hr />
@@ -98,7 +100,7 @@ export default function MisProductos() {
                                     <div className="botones d-flex flex-column m-2 gap-3">
                                         <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>
                                         <button className="btnThree" onClick={() => eliminarProductoPorId(producto.id)} id={producto.id}>Eliminar ❌</button>
-                                        <button className="btnTwo" onClick={() => agregarAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>
+                                        <button className="btnTwo" onClick={() => agregarProductoAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>
                                     </div>
                                 </Card.Body>
                             </Card>

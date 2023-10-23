@@ -1,6 +1,7 @@
-import { useContext } from "react";
-import Context from "../Context";
+import { useContext, useEffect } from "react";
+import { Context } from "../Context";
 import { useNavigate } from "react-router-dom";
+import { FaTrashCan } from "react-icons/fa6";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -8,28 +9,27 @@ import Button from 'react-bootstrap/Button';
 
 export default function Carrito() {
 
-    const { prevCarrito, setPrevCarrito, } = useContext(Context);
+    const { carrito, setCarrito, totalPrecioCarrito, setTotalPrecioCarrito, eliminarDelCarrito, limpiarCarrito, calcularTotalCarrito } = useContext(Context);
 
-    const total = prevCarrito.reduce((a, { price, count }) => a + price * count, 0);
-
-    const increment = (i) => {
-        prevCarrito[i].count++;
-        setPrevCarrito([...prevCarrito]);
-    };
-
-    const decrement = (i) => {
-        const { count } = prevCarrito[i];
-        if (count === 1) {
-            prevCarrito.splice(i, 1);
-        } else {
-            prevCarrito[i].count--;
-        }
-        setPrevCarrito([...prevCarrito]);
-    };
+    useEffect(() => {
+        // Actualizar el precio total cuando cambie el carrito
+        const nuevoTotal = calcularTotalCarrito(carrito);
+        setTotalPrecioCarrito(nuevoTotal);
+        // Guardar el carrito actualizado en el almacenamiento local
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+    }, [carrito, setTotalPrecioCarrito, calcularTotalCarrito]);
 
     const vaciarCarrito = () => {
-        setPrevCarrito([]);
-        setTotal(0);
+        // Establecer el total del carrito a cero
+        setTotalPrecioCarrito(0);
+
+        // Limpiar el carrito en el almacenamiento local
+        localStorage.removeItem("carrito");
+        localStorage.removeItem("precioTotal");
+        // Llamar a la función limpiarCarrito (si es necesario)
+        limpiarCarrito();
+
+        navigate("/carrito");
     }
 
     const navigate = useNavigate();
@@ -41,15 +41,15 @@ export default function Carrito() {
         <div className="carrito section container">
             <div className="contenedorMa">
                 <h2>Detalles de su compra</h2>
-                {prevCarrito != 0 ? (
-                    prevCarrito.map((item, i) => {
+                {carrito.length != 0 ? (
+                    carrito.map((item, i) => {
                         return (
                             <div key={i} className="contenedorPadre">
                                 <div className="contenedorHijo">
                                     <div className="contenedorItem">
-                                        <img className="imagenPizza" src={item.img} alt="" />
+                                        <img className="imagenProducto" src={item.imagen} alt="" />
                                         <p className="nombreItem">
-                                            {item.name}
+                                            {item.nombre}
                                         </p>
                                     </div>
                                     <table className="cantidades">
@@ -57,20 +57,17 @@ export default function Carrito() {
                                             <tr className="d-flex justify-content-end align-items-center">
                                                 <td>
                                                     {" "}
-                                                    <p className="text-success m-0">${(item.price * item.count).toLocaleString()}</p>
+                                                    <p className="text-success m-0">${(item.precio).toLocaleString()}</p>
                                                 </td>
                                                 <td>
-                                                    <button onClick={() => decrement(i)} className="btn btn-danger m-2">-</button>
+                                                    <button onClick={() => eliminarDelCarrito(item.id)} className="btnThree">Eliminar ❌</button>
                                                 </td>
                                                 <td key={item.id}>
                                                     <span className="p-2 text-center m-2">
                                                         {
-                                                            item.count
+                                                            item.cantidad
                                                         }
                                                     </span>
-                                                </td>
-                                                <td>
-                                                    <button onClick={() => increment(i)} className="btn btn-primary">+</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -84,12 +81,12 @@ export default function Carrito() {
                     <h3>⚠️ Ups! No tienes productos en tu carrito! <button className="btnTwo" onClick={volverInicio}>Volver</button></h3>
 
                 )}
-                <h4 className='my-4'>Total a Pagar: ${total.toLocaleString()}</h4>
+                <h4 className='my-4'>Total a Pagar: ${totalPrecioCarrito.toLocaleString()}</h4>
                 <button className='btnOne'>
                     Ir a Pagar
                 </button>
                 <div className="vaciar">
-                    <button className="btnThree" onClick={vaciarCarrito}>Vaciar Carrito ❌</button>
+                    <button className="btnThree" onClick={vaciarCarrito}>Vaciar Carrito <FaTrashCan /></button>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import profile from '../assets/profile.svg'
 //Importar Contexto
-import Context from "../Context";
+import { Context } from "../Context";
 
 const Perfil = () => {
   const { logout } = useContext(Context)

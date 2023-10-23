@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import Context from "../Context";
-import { useNavigate, Link} from "react-router-dom";
+import { Context } from "../Context";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function RegistroForm() {
@@ -20,7 +20,7 @@ export default function RegistroForm() {
         const { email, password } = usuario;
         try {
             if (!email || !password) return alert("Email y password obligatorias");
-            const { data: token } = await axios.post(urlServer + endpoint, usuario);            
+            const { data: token } = await axios.post(urlServer + endpoint, usuario);
             alert("Usuario identificado con éxito 😀");
             localStorage.setItem("token", token);
 
@@ -31,8 +31,8 @@ export default function RegistroForm() {
         }
     };
 
-    
-    
+
+
     return (
         <div className="login col-10 col-sm-6 col-md-3 m-auto mt-5 section">
             <h1>Iniciar Sesión</h1>
