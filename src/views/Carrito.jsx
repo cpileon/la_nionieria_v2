@@ -44,37 +44,25 @@ export default function Carrito() {
                 {carrito.length != 0 ? (
                     carrito.map((item, i) => {
                         return (
-                            <div key={i} className="contenedorPadre">
-                                <div className="contenedorHijo">
-                                    <div className="contenedorItem">
-                                        <img className="imagenProducto" src={item.imagen} alt="" />
-                                        <p className="nombreItem">
-                                            {item.nombre}
-                                        </p>
-                                    </div>
-                                    <table className="cantidades">
-                                        <tbody>
-                                            <tr className="d-flex justify-content-end align-items-center">
-                                                <td>
-                                                    {" "}
-                                                    <p className="text-success m-0">${(item.precio).toLocaleString()}</p>
-                                                </td>
-                                                <td>
-                                                    <button onClick={() => eliminarDelCarrito(item.id)} className="btnThree">Eliminar ❌</button>
-                                                </td>
-                                                <td key={item.id}>
-                                                    <span className="p-2 text-center m-2">
-                                                        {
-                                                            item.cantidad
-                                                        }
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <hr />
-                                </div>
-                            </div>
+                            <div className="row m-2 bg bg-light p-3 rounded shadow" key={item.id}>
+                        <div className="col">
+                            <h5><strong>{i+1}</strong></h5>
+                        </div>
+                        <div className="col">
+                            <img src={item.imagen} width={50} />
+                        </div>
+                        <div className="col">
+                           <strong>{item.nombre}</strong>
+                        </div>
+                        <div className="col">
+                            <strong>Precio:</strong> ${(item.precio).toLocaleString('en-US')}
+                        </div>
+                        <div className="col">
+                        <button onClick={() => eliminarDelCarrito(item.id)} className="btnThree">Eliminar ❌</button>
+                            
+                        </div>
+                    </div>
+
                         );
                     })
                 ) : (
@@ -85,7 +73,7 @@ export default function Carrito() {
                 <button className='btnOne'>
                     Ir a Pagar
                 </button>
-                <div className="vaciar">
+                <div className="vaciar mt-3">
                     <button className="btnThree" onClick={vaciarCarrito}>Vaciar Carrito <FaTrashCan /></button>
                 </div>
             </div>

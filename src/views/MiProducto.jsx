@@ -97,7 +97,7 @@ export default function MiProducto() {
                                     </dl>
                                     <hr />
                                     <div className="bottom">
-                                        <h3>Precio: ${chosenProducto.precio ? chosenProducto.precio.toLocaleString() : ''}</h3>
+                                        <h3>Precio: ${chosenProducto.precio ? chosenProducto.precio.toLocaleString('en-US') : ''}</h3>
                                         <button className="btnOne" onClick={() => agregarProductoAlCarrito(chosenProducto)} id={chosenProducto.id}>Añadir 🛒</button>
                                     </div>
 

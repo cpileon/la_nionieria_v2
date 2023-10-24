@@ -14,6 +14,7 @@ import imagebanner from '../assets/homeimg1.png'
 const Home = () => {
   //Animación de entrada
   useEffect(()=>{
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     Aos.init({duration: 2000})
   }, [])
 

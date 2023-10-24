@@ -94,7 +94,7 @@ export default function MisProductos() {
                                         </dl>
                                         <hr />
                                         <Card.Text className="prices">
-                                            <strong> $ {producto.precio.toLocaleString()} </strong>
+                                            <strong> $ {producto.precio.toLocaleString('en-US')} </strong>
                                         </Card.Text>
                                     </div>
                                     <div className="botones d-flex flex-column m-2 gap-3">

@@ -55,7 +55,7 @@ $dropdown-dark-bg:      hsl(15, 74%, 70%)    ;
 }
 
 .section {
-    padding: 4rem 0 2rem;
+    padding: 6rem 0 2rem;
 }
 
 .icon {
@@ -190,7 +190,37 @@ $dropdown-dark-bg:      hsl(15, 74%, 70%)    ;
             }
             .containerBtns {
                 width: 100%;
+        }
+
+        .rightsideNav{
+            .carro{
+                display: flex; 
+                align-items: center;  
+
+                .carrito{
+                    font-size: 20px;
+                    margin-right: 6px;
+                    padding: 2px;
+                    display: inline-block;
+                }
+
+                .contador{
+                    display: inline-block;
+                    width: 16px;  // Tamaño del círculo
+                    height: 16px; // Tamaño del círculo
+                    background-color: #F3799F; // Color de fondo rosado clarito
+                    border-radius: 50%;
+                    text-align: center;
+                    line-Height: 15px; // Centra verticalmente el número
+                    color: white;
+                    font-size: 11px; // Ajústalo según tus preferencias
+                    border: 1px solid black; // Borde negro delgado alrededor del círculo
+                    position: relative;
+                    bottom: -11px; // Ajusta la posición vertical del círculo sobre el ícono
+                    right: 20px;  // Ajusta la posición horizontal del círculo sobre el ícono
+                }
             }
+        }
     }
 }
 
@@ -542,6 +572,7 @@ $dropdown-dark-bg:      hsl(15, 74%, 70%)    ;
         }
     }
 }
+
 
 /*Importar bootstrap*/
 @import '~bootstrap/scss/bootstrap';

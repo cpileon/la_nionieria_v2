@@ -39,7 +39,7 @@ a:hover {
 }
 
 .section {
-  padding: 4rem 0 2rem;
+  padding: 6rem 0 2rem;
 }
 
 .icon {
@@ -154,6 +154,31 @@ a:hover {
 }
 .navegacion .navCont1 .containerBtns {
   width: 100%;
+}
+.navegacion .navCont1 .rightsideNav .carro {
+  display: flex;
+  align-items: center;
+}
+.navegacion .navCont1 .rightsideNav .carro .carrito {
+  font-size: 20px;
+  margin-right: 6px;
+  padding: 2px;
+  display: inline-block;
+}
+.navegacion .navCont1 .rightsideNav .carro .contador {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #F3799F;
+  border-radius: 50%;
+  text-align: center;
+  line-Height: 15px;
+  color: white;
+  font-size: 11px;
+  border: 1px solid black;
+  position: relative;
+  bottom: -11px;
+  right: 20px;
 }
 
 .home {

@@ -84,7 +84,7 @@ export default function Cards() {
                             </dl>
                             <hr />
                             <Card.Text className="prices">
-                                <strong> $ {producto.precio.toLocaleString()} </strong>
+                                <strong> $ {producto.precio.toLocaleString('en-US')} </strong>
                             </Card.Text>
                             <div className="botones">
                                 <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>

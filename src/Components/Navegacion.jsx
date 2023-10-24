@@ -57,36 +57,11 @@ const Navegacion = () => {
                         <NavDropdown.Item onClick={logout}>Cerrar sesión</NavDropdown.Item>
                       </NavDropdown>
 
-                      <Nav.Link className="carro" href="/carrito" style={{ display: 'flex', alignItems: 'center' }}>
-                        <span
-                          style={{
-                            fontSize: '25px',
-                            marginRight: '6px',
-                            padding: '2px',
-                            display: 'inline-block',
-                          }}
-                        //Aquí abajo puedes comentar o descomentar uno u otro ícono para que veas cuál te gusta más. Ambos ya están importados.
-                        >
-                          {/* <FaShoppingCart /> */}
+                      <Nav.Link className="carro" href="/carrito">
+                        <span className='carrito'>
                           <FaCartShopping />
                         </span>
-                        <span className="contador"
-                          style={{
-                            display: 'inline-block',
-                            width: '16px',  // Tamaño del círculo
-                            height: '16px', // Tamaño del círculo
-                            backgroundColor: '#F3799F', // Color de fondo rosado clarito
-                            borderRadius: '50%',
-                            textAlign: 'center',
-                            lineHeight: '15px', // Centra verticalmente el número
-                            color: 'white',
-                            fontSize: '11px', // Ajústalo según tus preferencias
-                            border: '1px solid black', // Borde negro delgado alrededor del círculo
-                            position: 'relative',
-                            bottom: '-11px', // Ajusta la posición vertical del círculo sobre el ícono
-                            right: '20px',  // Ajusta la posición horizontal del círculo sobre el ícono
-                          }}
-                        >
+                        <span className="contador">
                           {totalProductosCarrito}
                         </span>
                       </Nav.Link>
