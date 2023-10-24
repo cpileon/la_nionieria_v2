@@ -18,8 +18,25 @@ export default function Publicar() {
         estado: "",
     });
 
+    // Estados nuevos para verificar la validez del precio y el mensaje de error
+    const [precioValido, setPrecioValido] = useState(true);
+    const [precioError, setPrecioError] = useState("");
+
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        // Verifica si el precio es válido antes de actualizar el estado.
+        if (name === "precio") {
+            const precio = parseFloat(value);
+            if (precio <= 0 || isNaN(precio)) {
+                setPrecioValido(false);
+                setPrecioError("El precio debe ser mayor que cero.");
+            } else {
+                setPrecioValido(true);
+                setPrecioError("");
+            }
+        }
+
         setProductoNuevo({ ...productoNuevo, [name]: value });
     };
 
@@ -93,10 +110,15 @@ export default function Publicar() {
                         name="precio"
                         value={productoNuevo.precio}
                         onChange={handleChange}
-                        className="form-control"
+                        className={`form-control ${precioValido ? "" : "is-invalid"}`}
                         required
                         min="1"
                     />
+                    {!precioValido && (
+                        <div className="invalid-feedback">
+                            {precioError}
+                        </div>
+                    )}
                 </div>
                 <div className="form-group gImg">
                     <label htmlFor="imagen">Imagen del Producto (URL):</label>

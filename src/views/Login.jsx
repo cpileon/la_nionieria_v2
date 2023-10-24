@@ -7,11 +7,14 @@ export default function RegistroForm() {
     const { setUsuario, navbar, setNavbar } = useContext(Context);
     const navigate = useNavigate();
     const [usuario, setUsuarioLocal] = useState({});
+    const [loginError, setLoginError] = useState(false); //Estado nuevo para el error
 
     const handleSetUsuario = ({ target: { value, name } }) => {
         const field = {};
         field[name] = value;
         setUsuarioLocal({ ...usuario, ...field });
+        // Vuelve a normal cuando el usuario comienza a escribir
+        setLoginError(false);
     };
 
     const iniciarSesion = async () => {
@@ -19,19 +22,27 @@ export default function RegistroForm() {
         const endpoint = "/login";
         const { email, password } = usuario;
         try {
-            if (!email || !password) return alert("Email y password obligatorias");
+            if (!email || !password) {
+                // Si falta el correo o la contraseña, muestra el estado de error
+                setLoginError(true);
+                return;
+            }
             const { data: token } = await axios.post(urlServer + endpoint, usuario);
+            /* // No muestra el error cuando el inicio de sesión es exitoso
+            setLoginError(false); */
             alert("Usuario identificado con éxito 😀");
             localStorage.setItem("token", token);
 
             navigate("/perfil");
         } catch ({ response: { data: message } }) {
-            alert(message + " 🙁");
-            console.log(message);
+            // Muestra el estado de error en caso de un error de inicio de sesión
+            setLoginError(true);
         }
     };
 
-
+    // 2 variables con una clase de estilo condicional en función del estado de error
+    const emailInputClass = loginError ? "formMail form-control is-invalid" : "formMail form-control";
+    const passwordInputClass = loginError ? "formPass form-control is-invalid" : "formPass form-control";
 
     return (
         <div className="login col-10 col-sm-6 col-md-3 m-auto mt-5 section">
@@ -44,7 +55,7 @@ export default function RegistroForm() {
                     onChange={handleSetUsuario}
                     type="email"
                     name="email"
-                    className="formMail form-control"
+                    className={emailInputClass}//cambio
                     placeholder="Ingresa tu email"
                 />
             </div>
@@ -55,10 +66,13 @@ export default function RegistroForm() {
                     onChange={handleSetUsuario}
                     type="password"
                     name="password"
-                    className="formPass form-control"
+                    className={passwordInputClass}//cambio
                     placeholder="Ingresa tu contraseña"
                 />
             </div>
+            {loginError && (
+                <p className="error-text" style={{ color: 'red' }}>Email o contraseña incorrecta. Por favor, inténtalo de nuevo.</p>
+            )}
             <div className="botonLogin">
                 <button onClick={iniciarSesion} className="btnOne mt-4">
                     Inicia Sesión
