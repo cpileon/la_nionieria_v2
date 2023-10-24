@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { FaTrashCan } from "react-icons/fa6";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-/* import "../assets/carrito.css" */
 
 export default function Carrito() {
 
-    const { carrito, setCarrito, totalPrecioCarrito, setTotalPrecioCarrito, eliminarDelCarrito, limpiarCarrito, calcularTotalCarrito } = useContext(Context);
+    const { carrito, totalPrecioCarrito, setTotalPrecioCarrito, eliminarDelCarrito, limpiarCarrito, calcularTotalCarrito } = useContext(Context);
 
     useEffect(() => {
         // Actualizar el precio total cuando cambie el carrito
@@ -33,8 +31,8 @@ export default function Carrito() {
     }
 
     const navigate = useNavigate();
-    const volverInicio = (e) => {
-        navigate("/")
+    const volverTienda = (e) => {
+        navigate("/tienda")
     }
 
     return (
@@ -45,37 +43,41 @@ export default function Carrito() {
                     carrito.map((item, i) => {
                         return (
                             <div className="row m-2 bg bg-light p-3 rounded shadow" key={item.id}>
-                        <div className="col">
-                            <h5><strong>{i+1}</strong></h5>
-                        </div>
-                        <div className="col">
-                            <img src={item.imagen} width={50} />
-                        </div>
-                        <div className="col">
-                           <strong>{item.nombre}</strong>
-                        </div>
-                        <div className="col">
-                            <strong>Precio:</strong> ${(item.precio).toLocaleString('en-US')}
-                        </div>
-                        <div className="col">
-                        <button onClick={() => eliminarDelCarrito(item.id)} className="btnThree">Eliminar ❌</button>
-                            
-                        </div>
-                    </div>
+                                <div className="col">
+                                    <h5><strong>{i + 1}</strong></h5>
+                                </div>
+                                <div className="col">
+                                    <img src={item.imagen} width={50} />
+                                </div>
+                                <div className="col">
+                                    <strong>{item.nombre}</strong>
+                                </div>
+                                <div className="col">
+                                    <strong>Precio:</strong> ${(item.precio).toLocaleString('en-US')}
+                                </div>
+                                <div className="col">
+                                    <button onClick={() => eliminarDelCarrito(item.id)} className="btnThree">Eliminar ❌</button>
+
+                                </div>
+                            </div>
 
                         );
                     })
                 ) : (
-                    <h3>⚠️ Ups! No tienes productos en tu carrito! <button className="btnTwo" onClick={volverInicio}>Volver</button></h3>
+                    <h3>⚠️ Ups! No tienes productos en tu carrito! <button className="btnTwo" onClick={volverTienda}>Volver</button></h3>
 
                 )}
-                <h4 className='my-4'>Total a Pagar: ${totalPrecioCarrito.toLocaleString()}</h4>
-                <button className='btnOne'>
-                    Ir a Pagar
-                </button>
-                <div className="vaciar mt-3">
-                    <button className="btnThree" onClick={vaciarCarrito}>Vaciar Carrito <FaTrashCan /></button>
-                </div>
+                {carrito.length > 0 && (
+                    <div>
+                        <h4 className='my-4'>Total a Pagar: ${totalPrecioCarrito.toLocaleString()}</h4>
+                        <button className="btnOne" onClick={() => navigate("/pagar")}>
+                            Ir a Pagar
+                        </button>
+                        <div className="vaciar mt-3">
+                            <button className="btnThree" onClick={vaciarCarrito}>Vaciar Carrito <FaTrashCan /></button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

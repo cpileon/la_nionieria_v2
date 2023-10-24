@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, setState } from "react";
+import { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -9,12 +9,11 @@ export const Provider = ({ children }) => {
     const [usuario, setUsuario] = useState(null)
     const [nombre, setNombre] = useState(null)
     const [productos, setProductos] = useState([]);
+    const [totalPrecioCarrito, setTotalPrecioCarrito] = useState(0);
     const [carrito, setCarrito] = useState(() => {
         const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
         return carritoGuardado;
     });
-    /*    const [totalCarrito, setTotalCarrito] = useState(0); */
-    const [totalPrecioCarrito, setTotalPrecioCarrito] = useState(0);
 
     //Estado para cambiar visibilización de la navbar
     const [navbar, setNavbar] = useState();
@@ -67,6 +66,7 @@ export const Provider = ({ children }) => {
     const agregarAlCarrito = (producto) => {
         // Lógica para agregar un producto al carrito.
         setCarrito((carritoAnterior) => {
+
             // Clonamos el carrito anterior para no cambiar el estado directamente.
             const nuevoCarrito = [...carritoAnterior];
             // Verificamos si el producto ya está en el carrito por su ID.

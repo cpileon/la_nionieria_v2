@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Context } from "../Context";
+import React, { useEffect, useState } from 'react'
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export default function MisProductos() {
-    const { carrito, agregarAlCarrito, setTotalPrecioCarrito, totalPrecioCarrito } = useContext(Context);
+
     const [misProductos, setMisProductos] = useState([]);
 
     const getMisProductosData = async () => {
@@ -56,23 +55,6 @@ export default function MisProductos() {
         }
     };
 
-    const agregarProductoAlCarrito = (producto) => {
-        const productoExistente = carrito.find((item) => item.id === producto.id);
-
-        if (!productoExistente) {
-            agregarAlCarrito(producto);
-
-            // Actualiza el estado totalPrecioCarrito en el contexto
-            setTotalPrecioCarrito(totalPrecioCarrito + (producto.precio * producto.cantidad));
-
-            // Actualiza el almacenamiento local
-            localStorage.setItem("carrito", JSON.stringify([...carrito, producto]));
-            localStorage.setItem("precioTotal", (totalPrecioCarrito + (producto.precio * producto.cantidad)).toString());
-        } else {
-            alert("Ya has agregado este producto al carrito, solo puedes agregarlo una vez.");
-        }
-    }
-
     return (
         <>
             <div className="gridProducts section container">
@@ -100,7 +82,6 @@ export default function MisProductos() {
                                     <div className="botones d-flex flex-column m-2 gap-3">
                                         <button className="btnOne" onClick={verDetalle} id={producto.id}>Ver Más 👀</button>
                                         <button className="btnThree" onClick={() => eliminarProductoPorId(producto.id)} id={producto.id}>Eliminar ❌</button>
-                                        <button className="btnTwo" onClick={() => agregarProductoAlCarrito(producto)} id={producto.id}>Añadir 🛒</button>
                                     </div>
                                 </Card.Body>
                             </Card>

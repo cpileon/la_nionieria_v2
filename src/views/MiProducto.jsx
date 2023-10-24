@@ -1,11 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Aos from 'aos'
 import 'aos/dist/aos.css'
-
-//Importar Contexto
-import { Context } from "../Context";
 
 //Importar elementos bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,9 +11,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 export default function MiProducto() {
-
-    const { carrito, agregarAlCarrito, totalPrecioCarrito, setTotalPrecioCarrito } = useContext(Context)
-
     const [chosenProducto, setChosenProducto] = useState({});
 
     const params = useParams();
@@ -51,25 +45,6 @@ export default function MiProducto() {
         Aos.init({ duration: 2000 })
     }, [])
 
-    const agregarProductoAlCarrito = (chosenProducto) => {
-        const productoExistente = carrito.find((item) => item.id === chosenProducto.id);
-
-        if (!productoExistente) {
-            // Agregar el producto al carrito con una cantidad de 1
-            chosenProducto.cantidad = 1;
-            agregarAlCarrito(chosenProducto);
-
-            // Actualiza el estado totalPrecioCarrito en el contexto
-            setTotalPrecioCarrito((totalPrecioCarrito) => totalPrecioCarrito + chosenProducto.precio);
-
-            // Actualiza el almacenamiento local
-            localStorage.setItem("carrito", JSON.stringify([...carrito, chosenProducto]));
-            localStorage.setItem("precioTotal", (totalPrecioCarrito + chosenProducto.precio).toString());
-        } else {
-            alert("Ya has agregado este producto al carrito, solo puedes agregarlo una vez.");
-        }
-    }
-
     return (
         <div className="detalleProducto section container" data-aos='fade-up' data-aos-duration='1500'>
 
@@ -98,7 +73,6 @@ export default function MiProducto() {
                                     <hr />
                                     <div className="bottom">
                                         <h3>Precio: ${chosenProducto.precio ? chosenProducto.precio.toLocaleString('en-US') : ''}</h3>
-                                        <button className="btnOne" onClick={() => agregarProductoAlCarrito(chosenProducto)} id={chosenProducto.id}>Añadir 🛒</button>
                                     </div>
 
                                 </Card.Body>

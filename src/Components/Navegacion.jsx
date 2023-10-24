@@ -6,9 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import logosolo from '../assets/logosolo.png'
 import { Context } from "../Context";
 import { BiSolidUserCircle } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom';
-//import de react-icons para usar fontawesome (para instalar usé: npm install react-icons --save)
-import { FaShoppingCart } from "react-icons/fa";
+
 //Este ícono se saca de la sección de "Font Awesome 5" del sitio web https://react-icons.github.io/react-icons/icons?name=fa 
 //ojo que para "Font Awesome 6" la importación es diferente :O aquí abajo dejo un ejemplo de otro icono
 import { FaCartShopping } from "react-icons/fa6";
@@ -17,7 +15,6 @@ const Navegacion = () => {
   const [localnombre, setlocalnombre] = useState('');
   const { carrito, logout } = useContext(Context);
   const compToken = localStorage.getItem('token');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');

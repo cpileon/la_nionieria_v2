@@ -19,7 +19,7 @@ import Carrito from './views/Carrito'
 import Publicar from './views/Publicar'
 import MisProductos from './views/MisProductos'
 import MiProducto from './views/MiProducto'
-
+import Pagar from './Components/Pagar'
 
 function App() {
 
@@ -36,6 +36,7 @@ function App() {
             <Route path="/producto/:id" element={<Producto />} />
             <Route path="/miproducto/:id" element={<MiProducto />} />
             <Route path="/carrito" element={<Carrito />} />
+            <Route path="/pagar" element={<Pagar />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/publicar" element={<Publicar />} />
             <Route path="/misproductos" element={<MisProductos />} />

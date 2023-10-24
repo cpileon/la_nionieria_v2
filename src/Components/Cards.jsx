@@ -4,10 +4,8 @@ import { Context } from "../Context";
 import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-/* import "../assets/cards.css" */
 
 export default function Cards() {
     const { productos, setProductos, agregarAlCarrito, carrito, setTotalPrecioCarrito, totalPrecioCarrito } = useContext(Context);
