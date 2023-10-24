@@ -95,6 +95,7 @@ export default function Publicar() {
                         onChange={handleChange}
                         className="form-control"
                         required
+                        min="1"
                     />
                 </div>
                 <div className="form-group gImg">
